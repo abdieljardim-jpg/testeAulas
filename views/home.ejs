@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina inicial</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    ula
+    <section>
+        <div class="box">
+            <h1>Criar nomes</h1>
+            <form action="/addname" method="post">
+                <input type="text" name="name" placeholder="Digite um nome">
+                <button onclick="" type="submit">Criar</button>
+            </form>
+        </div><!-- box -->
+        <div class="box">
+            <h1>Nome aleatorio</h1>
+            <button>Puxar nome</button>
+            <p id="lista"></p>
+        </div><!-- box -->
+    </section>
+    <script>
+        function carregarUsuarios() {
+            fetch("/usuarios")
+                .then(res => res.json())
+                .then(dados => {
+                    const lista = document.getElementById("lista");
+                    lista.innerHTML = "";
+
+                    dados.forEach(usuario => {
+                        lista.innerHTML += `<li>${usuario.nome}</li>`;
+                    });
+                });
+        }
+    </script>
 </body>
+
 </html>
